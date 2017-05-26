@@ -12,24 +12,39 @@
 
 #include "checker.h"
 
-void	swap(t_list **lst)
+void	swap_list(t_list *lst)
 {
-	t_list	*elem;
 	int		*x;
 	int		*y;
 
-	ft_printfnl("swap:");
-	elem = *lst;
-	while (elem)
+	while (lst)
 	{
-		if (elem->next && !elem->next->next)
+		if (lst->next && !lst->next->next)
 		{
-			x = (int*)elem->content;
-			y = (int*)elem->next->content;
+			x = (int*)lst->content;
+			y = (int*)lst->next->content;
 			*x ^= *y;
 			*y ^= *x;
 			*x ^= *y;
 		}
-		elem = elem->next;
+		lst = lst->next;
 	}
+}
+
+void	swap_a(t_list **a, t_list **b)
+{
+	(void)b;
+	swap_list(*a);
+}
+
+void	swap_b(t_list **a, t_list **b)
+{
+	(void)a;
+	swap_list(*b);
+}
+
+void	swap_both(t_list **a, t_list **b)
+{
+	swap_list(*a);
+	swap_list(*b);
 }

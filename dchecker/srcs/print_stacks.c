@@ -21,6 +21,8 @@ void	print_nbr(t_list *elem)
 		nbr = (int*)elem->content;
 		ft_printf("%-7d", *nbr);
 	}
+	else
+		ft_printf("%-7c", ' ');
 }
 
 void	boh(t_list *a, t_list *b)
@@ -34,15 +36,15 @@ void	boh(t_list *a, t_list *b)
 	else
 		return ;
 	print_nbr(a);
-	ft_putchar('|');
+	ft_putstr(" | ");
 	print_nbr(b);
 	ft_putchar('\n');
 }
 
 void	print_stacks(t_list *a, t_list *b)
 {
-	ft_printfnl("---------------");
+	ft_printfnl("-----------------");
 	boh(a, b);
-	ft_printfnl("------- -------\n%3ca%7cb%3c", ' ', ' ', ' ');
+	ft_printfnl("-------   -------\n%3ca%7cb%3c", ' ', ' ', ' ');
 	ft_putchar('\n');
 }
