@@ -6,13 +6,13 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:50:08 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/05/26 20:01:58 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/28 00:19:00 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-t_cmdop		g_cmdops[12] =
+t_cmdop			g_cmdops[12] =
 {
 	{"sa", &swap_a},
 	{"sb", &swap_b},
@@ -42,7 +42,23 @@ t_stackop		get_op(char *cmd)
 	return (NULL);
 }
 
-int		main(int argc, char **argv)
+void			check_stacks(t_list *a, t_list *b)
+{
+	if (b != NULL)
+		ft_printfnl("KO");
+	while (a && a->next)
+	{
+		if (*((int*)a->content) < *((int*)a->next->content))
+		{
+			ft_printfnl("KO");
+			exit(0);
+		}
+		a = a->next;
+	}
+	ft_printfnl("OK");
+}
+
+int				main(int argc, char **argv)
 {
 	t_list		*a;
 	t_list		*b;
@@ -56,7 +72,10 @@ int		main(int argc, char **argv)
 	while (get_next_line(0, &cmd) > 0)
 	{
 		op = get_op(cmd);
+		if (!op)
+			ft_error("ERROR: Operation unknown", 1);
 		op(&a, &b);
 		print_stacks(a, b);
 	}
+	check_stacks(a, b);
 }
