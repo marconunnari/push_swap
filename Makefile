@@ -4,3 +4,7 @@ makechecker:
 
 runchecker: makechecker
 	@./checker $(LIST)
+
+runcorrect: makechecker
+	@make -C correct >/dev/null
+	@./correct/push_swap $(LIST) #| ./checker $(LIST)
