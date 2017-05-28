@@ -76,6 +76,7 @@ int				main(int argc, char **argv)
 	i = 0;
 	while (get_next_line(0, &cmd) > 0)
 	{
+		ft_printfnl(cmd);
 		op = get_op(cmd);
 		if (!op)
 		{

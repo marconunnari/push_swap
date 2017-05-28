@@ -19,10 +19,10 @@ void	print_nbr(t_list *elem)
 	if (elem)
 	{
 		nbr = (int*)elem->content;
-		ft_printf("%-7d", *nbr);
+		ft_printf("%-10d", *nbr);
 	}
 	else
-		ft_printf("%-7c", ' ');
+		ft_printf("%-10c", ' ');
 }
 
 void	boh(t_list *a, t_list *b)
@@ -43,8 +43,8 @@ void	boh(t_list *a, t_list *b)
 
 void	print_stacks(t_list *a, t_list *b)
 {
-	ft_printfnl("-----------------");
+	ft_printfnl("-----------------------");
 	boh(a, b);
-	ft_printfnl("-------   -------\n%3ca%7cb%3c", ' ', ' ', ' ');
+	ft_printfnl("----------   ----------\n%6ca%7cb%6c", ' ', ' ', ' ');
 	ft_putchar('\n');
 }
