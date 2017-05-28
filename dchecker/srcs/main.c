@@ -45,13 +45,16 @@ t_stackop		get_op(char *cmd)
 void			check_stacks(t_list *a, t_list *b)
 {
 	if (b != NULL)
+	{
 		ft_printfnl("KO");
+		return ;
+	}
 	while (a && a->next)
 	{
 		if (*((int*)a->content) < *((int*)a->next->content))
 		{
 			ft_printfnl("KO");
-			exit(0);
+			return ;
 		}
 		a = a->next;
 	}
@@ -64,18 +67,25 @@ int				main(int argc, char **argv)
 	t_list		*b;
 	char		*cmd;
 	t_stackop	op;
+	int		i;
 
 	a = parse_args(argc, argv);
 	b = NULL;
 	print_stacks(a, b);
 	cmd = NULL;
+	i = 0;
 	while (get_next_line(0, &cmd) > 0)
 	{
 		op = get_op(cmd);
 		if (!op)
-			ft_error("ERROR: Operation unknown", 1);
+		{
+			ft_printf("ERROR: Operation unknown\n\n");
+			continue;
+		}
 		op(&a, &b);
 		print_stacks(a, b);
+		i++;
 	}
+	ft_printfnl("Performed %d operation%c", i, i == 1 ? '\0' : 's');
 	check_stacks(a, b);
 }
