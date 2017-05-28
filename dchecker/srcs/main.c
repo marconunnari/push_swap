@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:50:08 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/05/28 00:19:00 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/05/28 23:17:31 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,17 @@ t_stackop		get_op(char *cmd)
 	return (NULL);
 }
 
-void			check_stacks(t_list *a, t_list *b)
+int			check_stacks(t_list *a, t_list *b)
 {
 	if (b != NULL)
-	{
-		ft_printfnl("KO");
-		return ;
-	}
+		return (0);
 	while (a && a->next)
 	{
 		if (*((int*)a->content) < *((int*)a->next->content))
-		{
-			ft_printfnl("KO");
-			return ;
-		}
+			return (0);
 		a = a->next;
 	}
-	ft_printfnl("OK");
+	return (1);
 }
 
 int				main(int argc, char **argv)
@@ -88,5 +82,8 @@ int				main(int argc, char **argv)
 		i++;
 	}
 	ft_printfnl("Performed %d operation%c", i, i == 1 ? '\0' : 's');
-	check_stacks(a, b);
+	if (check_stacks(a, b))
+		ft_printfnl("OK");
+	else
+		ft_printfnl("KO");
 }
