@@ -1,6 +1,6 @@
 makechecker:
-	@make -C dchecker >/dev/null
-	@cp dchecker/checker .
+	@make -C checker_folder >/dev/null
+	@cp checker_folder/checker .
 
 runchecker: makechecker
 	@./checker $(LIST)
