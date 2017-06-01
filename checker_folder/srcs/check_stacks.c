@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   check_stacks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/01 15:19:31 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/01 15:19:33 by mnunnari         ###   ########.fr       */
+/*   Created: 2017/06/01 17:05:02 by mnunnari          #+#    #+#             */
+/*   Updated: 2017/06/01 17:05:33 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	push_b(t_list **a, t_list **b)
+int				check_stacks(t_list *a, t_list *b)
 {
-	t_list	*elem;
-
-	elem = ft_lstpop(a);
-	if (*b == NULL)
-		*b = elem;
-	else
-		ft_lstpush(b, elem);
-}
-
-void	push_a(t_list **a, t_list **b)
-{
-	t_list	*elem;
-
-	elem = ft_lstpop(b);
-	if (*a == NULL)
-		*a = elem;
-	else
-		ft_lstpush(a, elem);
+	if (b != NULL)
+		return (0);
+	while (a && a->next)
+	{
+		if (*((int*)a->content) < *((int*)a->next->content))
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }

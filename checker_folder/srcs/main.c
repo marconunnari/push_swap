@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:50:08 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/05/28 23:17:31 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/01 17:05:17 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,12 @@ t_stackop		get_op(char *cmd)
 	return (NULL);
 }
 
-int			check_stacks(t_list *a, t_list *b)
+int				perf_cmd(t_list **a, t_list **b)
 {
-	if (b != NULL)
-		return (0);
-	while (a && a->next)
-	{
-		if (*((int*)a->content) < *((int*)a->next->content))
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
-int				main(int argc, char **argv)
-{
-	t_list		*a;
-	t_list		*b;
 	char		*cmd;
 	t_stackop	op;
-	int		i;
+	int			i;
 
-	a = parse_args(argc, argv);
-	b = NULL;
-	print_stacks(a, b);
 	cmd = NULL;
 	i = 0;
 	while (get_next_line(0, &cmd) > 0)
@@ -74,13 +56,27 @@ int				main(int argc, char **argv)
 		op = get_op(cmd);
 		if (!op)
 		{
+			//todo: print error and exit
 			ft_printf("ERROR: Operation unknown\n\n");
 			continue;
 		}
-		op(&a, &b);
-		print_stacks(a, b);
+		op(a, b);
+		print_stacks(*a, *b);
 		i++;
 	}
+	return (i);
+}
+
+int				main(int argc, char **argv)
+{
+	t_list		*a;
+	t_list		*b;
+	int			i;
+
+	a = parse_args(argc, argv);
+	b = NULL;
+	print_stacks(a, b);
+	i = perf_cmd(&a, &b);
 	ft_printfnl("Performed %d operation%c", i, i == 1 ? '\0' : 's');
 	if (check_stacks(a, b))
 		ft_printfnl("OK");

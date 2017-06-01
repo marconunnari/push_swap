@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:49:21 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/05/26 16:50:01 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/01 15:44:39 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CHECKER_H
 
 # include "libft.h"
+# include <limits.h>
 
 typedef void	(*t_stackop)(t_list**, t_list**);
 
@@ -41,4 +42,5 @@ void			reverse_rotate_a(t_list **a, t_list **b);
 void			reverse_rotate_b(t_list **a, t_list **b);
 void			reverse_rotate_both(t_list **a, t_list **b);
 
+int			check_stacks(t_list *a, t_list *b);
 #endif
