@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:49:21 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/01 15:44:39 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/01 19:47:43 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct	s_cmdop
 	t_stackop	op;
 }		t_cmdop;
 
-t_list			*parse_args(int argc, char **argv);
+t_list			*parse_args(int argc, char **argv, int start);
 void			print_stacks(t_list *a, t_list *b);
 
 void			swap_a(t_list **a, t_list **b);

@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:50:08 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/01 17:05:17 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/01 19:47:50 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int				main(int argc, char **argv)
 	t_list		*b;
 	int			i;
 
-	a = parse_args(argc, argv);
+	a = parse_args(argc, argv, 1);
 	b = NULL;
 	print_stacks(a, b);
 	i = perf_cmd(&a, &b);

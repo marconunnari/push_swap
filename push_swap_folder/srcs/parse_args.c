@@ -6,11 +6,11 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 19:28:45 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/01 19:48:06 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/01 19:46:18 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 void			is_int(char *arg)
 {
