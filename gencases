@@ -1,0 +1,18 @@
+#!/usr/bin/env perl
+use 5.010;
+use Getopt::Std;
+use Algorithm::Permute;
+use Term::ANSIColor qw(:constants);
+
+system "rm cases";
+$i = 2;
+while ($i < 4)
+{
+	my @array = 1..$i;
+	my $p_iterator = Algorithm::Permute->new ( \@array );
+	while (my @perm = $p_iterator->next) {
+		system "echo @perm >> cases";
+	}
+	$i = $i + 1;
+	system "echo >> cases";
+}
