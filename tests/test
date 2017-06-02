@@ -10,7 +10,7 @@ if ($opt_p)
 {
 	system "rm cases";
 	$i = 2;
-	while ($i < 5)
+	while ($i < 6)
 	{
 		my @array = 1..$i;
 		my $p_iterator = Algorithm::Permute->new ( \@array );
@@ -28,12 +28,13 @@ while(<>)
 {
 	chomp ;
 	next if ($_ eq "");
+	say "../push_swap $_ | ../checker $v $_";
 	$out = `../push_swap $_ | ../checker $v $_`;
 	say $out if ($opt_v);
-	die "KO" if ($out eq "KO");
+	die "KO\n" if ($out eq "KO");
 	$argnbr = split(/\s/);
 	$res = `../push_swap $_ | wc -l | bc`;
-	die "KO" if ($argnbr <= 3 && $res > 3);
-	die "KO" if ($argnbr <= 5 && $res > 8);
-	print GREEN "OK ", RESET;
+	die "KO\n" if ($argnbr <= 3 && $res > 3);
+	die "KO\n" if ($argnbr <= 5 && $res > 8);
+	print GREEN "OK\n", RESET;
 }
