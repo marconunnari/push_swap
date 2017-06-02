@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 19:28:45 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/01 19:48:06 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:30:04 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			check_duplicate(t_list *a, int nbr)
 	}
 }
 
-t_list			*parse_arg(char *arg)
+t_list			*parse_arg(char *arg, int *verbose)
 {
 	char	**argv;
 	int		argc;
@@ -50,10 +50,10 @@ t_list			*parse_arg(char *arg)
 	argc = 0;
 	while (argv[argc])
 		argc++;
-	return (parse_args(argc, argv, 0));
+	return (parse_args(argc, argv, 0, verbose));
 }
 
-t_list			*parse_args(int argc, char **argv, int start)
+t_list			*parse_args(int argc, char **argv, int start, int *verbose)
 {
 	int		i;
 	int		nbr;
@@ -61,8 +61,15 @@ t_list			*parse_args(int argc, char **argv, int start)
 	t_list	*a;
 
 	a = NULL;
-	if (argc == 2 && ft_strcont(argv[1], ' '))
-		return parse_arg(argv[1]);
+	if (argc > 1 && ft_strequ(argv[1], "-v"))
+	{
+		*verbose = 1;
+		start++;
+	}
+	if (argc > 1 && !(*verbose) && ft_strcont(argv[1], ' '))
+		return parse_arg(argv[1], verbose);
+	if (argc > 2 && (*verbose) && ft_strcont(argv[2], ' '))
+		return parse_arg(argv[2], verbose);
 	i = start;
 	while (i < argc)
 	{

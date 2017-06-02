@@ -7,7 +7,8 @@ INCLUDES= -I includes -I ../includes -I $(DLIBFT)/includes
 DOBJS=objs
 DSRCS=srcs
 
-SRCS_FILES= main parse_args check_stacks #new#
+SRCS_FILES= main parse_args check_stacks sort_stacks print_stacks \
+			swap push rotate reverse_rotate #new#
 
 SRCS = $(addprefix $(DSRCS)/, $(addsuffix .c, $(SRCS_FILES)))
 OBJS = $(SRCS:$(DSRCS)/%.c=$(DOBJS)/%.o)

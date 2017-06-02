@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:50:08 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/01 19:47:50 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:31:28 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_stackop		get_op(char *cmd)
 	return (NULL);
 }
 
-int				perf_cmd(t_list **a, t_list **b)
+int				perf_cmd(t_list **a, t_list **b, int verbose)
 {
 	char		*cmd;
 	t_stackop	op;
@@ -52,7 +52,8 @@ int				perf_cmd(t_list **a, t_list **b)
 	i = 0;
 	while (get_next_line(0, &cmd) > 0)
 	{
-		ft_printfnl(cmd);
+		if (verbose)
+			ft_printfnl(cmd);
 		op = get_op(cmd);
 		if (!op)
 		{
@@ -61,7 +62,8 @@ int				perf_cmd(t_list **a, t_list **b)
 			continue;
 		}
 		op(a, b);
-		print_stacks(*a, *b);
+		if (verbose)
+			print_stacks(*a, *b);
 		i++;
 	}
 	return (i);
@@ -72,12 +74,16 @@ int				main(int argc, char **argv)
 	t_list		*a;
 	t_list		*b;
 	int			i;
+	int			verbose;
 
-	a = parse_args(argc, argv, 1);
+	verbose = 0;
+	a = parse_args(argc, argv, 1, &verbose);
 	b = NULL;
-	print_stacks(a, b);
-	i = perf_cmd(&a, &b);
-	ft_printfnl("Performed %d operation%c", i, i == 1 ? '\0' : 's');
+	if (verbose)
+		print_stacks(a, b);
+	i = perf_cmd(&a, &b, verbose);
+	if (verbose)
+		ft_printfnl("Performed %d operation%c", i, i == 1 ? '\0' : 's');
 	if (check_stacks(a, b))
 		ft_printfnl("OK");
 	else

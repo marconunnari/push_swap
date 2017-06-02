@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:49:21 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/01 19:47:43 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:26:50 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct	s_cmdop
 	t_stackop	op;
 }		t_cmdop;
 
-t_list			*parse_args(int argc, char **argv, int start);
+t_list			*parse_args(int argc, char **argv, int start, int *verbose);
 void			print_stacks(t_list *a, t_list *b);
 
 void			swap_a(t_list **a, t_list **b);
@@ -42,5 +42,5 @@ void			reverse_rotate_a(t_list **a, t_list **b);
 void			reverse_rotate_b(t_list **a, t_list **b);
 void			reverse_rotate_both(t_list **a, t_list **b);
 
-int			check_stacks(t_list *a, t_list *b);
+int				check_stacks(t_list *a, t_list *b);
 #endif

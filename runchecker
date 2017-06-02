@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-if make checker >/dev/null
-then
-	./checker $@
-fi
