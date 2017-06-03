@@ -4,20 +4,21 @@ use Getopt::Std;
 use Algorithm::Permute;
 use Term::ANSIColor qw(:constants);
 
-getopts('v');
+getopts('veor');
 
-$v = $opt_v ? "-v" : "";
+$max = 0;
 while(<>)
 {
 	chomp ;
 	next if ($_ eq "");
-	say "./push_swap $_ | ./checker $v $_";
-	$out = `./push_swap $_ | ./checker $v $_`;
-	say $out if ($opt_v);
-	die "KO\n" if ($out eq "KO");
+	say "./push_swap $_ | ./checker -v $_" if ($opt_e);
+	$out = `./push_swap $_ | ./checker $_`;
+	system "./push_swap $_ | ./checker -v $_" if ($opt_v);
+	die "KO\n" if (not $out eq "OK\n");
 	$argnbr = split(/\s/);
 	$res = `./push_swap $_ | wc -l | bc`;
-#	die "KO\n" if ($argnbr <= 3 && $res > 3);
-#	die "KO\n" if ($argnbr <= 5 && $res > 8);
-	print GREEN "OK\n", RESET;
+	say "oprations: $res" if ($opt_o);
+	$max = $res if ($res > $max);
+	print GREEN "OK\n", RESET if ($opt_r);
 }
+print "max $max";

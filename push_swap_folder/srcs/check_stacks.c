@@ -16,7 +16,7 @@ int				stack_sorted(t_list *lst)
 {
 	while (lst && lst->next)
 	{
-		if (*((int*)lst->content) < *((int*)lst->next->content))
+		if (nbr(lst) < nbr(lst->next))
 			return (0);
 		lst = lst->next;
 	}
