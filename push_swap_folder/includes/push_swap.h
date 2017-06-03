@@ -32,4 +32,6 @@ void			rotate_both(t_list **a, t_list **b);
 void			reverse_rotate_a(t_list **a, t_list **b);
 void			reverse_rotate_b(t_list **a, t_list **b);
 void			reverse_rotate_both(t_list **a, t_list **b);
+int			nbr(t_list *listptr);
+void			insertion_sort(t_list **a, t_list **b);
 #endif
