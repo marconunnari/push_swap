@@ -4,7 +4,7 @@ use Getopt::Std;
 use Algorithm::Permute;
 use Term::ANSIColor qw(:constants);
 
-my @array = 1..24;
+my @array = 1..26;
 say join(' ', reverse @array);
 exit(0);
 

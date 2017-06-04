@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:52:36 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/02 19:14:40 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/04 19:40:33 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int			nbr(t_list *listptr)
 
 void			sort_stacks(t_list **a, t_list **b)
 {
+	size_t	i;
 	size_t	length_a;
 
 	if (check_stacks(*a, *b))
@@ -28,8 +29,13 @@ void			sort_stacks(t_list **a, t_list **b)
 		swap_a(a, NULL);
 	else if (length_a == 3)
 		three_sort(a);
-	else if (length_a <= 24)
+	else if (length_a <= 4)
 		simple_sort(a, b, length_a);
-	else {};
-		//quick_sort(a, b);
+	else
+	{
+		quick_sort(a, b, length_a);
+		i = 0;
+		while (i++ < (length_a - 1) / 2)
+			rotate_a(a, b);
+	}
 }

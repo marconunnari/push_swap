@@ -6,14 +6,16 @@ use Term::ANSIColor qw(:constants);
 
 getopts('veor');
 
+system "make >/dev/null";
+
 $max = 0;
 while(<>)
 {
 	chomp ;
 	next if ($_ eq "");
 	say "./push_swap $_ | ./checker -v $_" if ($opt_e);
-	$out = `./push_swap $_ | ./checker $_`;
 	system "./push_swap $_ | ./checker -v $_" if ($opt_v);
+	$out = `./push_swap $_ | ./checker $_ | grep 'OK'`;
 	die "KO\n" if (not $out eq "OK\n");
 	$argnbr = split(/\s/);
 	$res = `./push_swap $_ | wc -l | bc`;
