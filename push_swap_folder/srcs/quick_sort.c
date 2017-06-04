@@ -1,47 +1,77 @@
 #include "push_swap.h"
 
-void			quick_sort(t_list **a, t_list **b, size_t length_a)
+static void		partition(t_list **a, t_list **b,
+		size_t len_a, int median)
 {
 	size_t		i;
-	t_list	*lst;
-	int		median;
-	t_list	*small_a;
-	t_list	*big_a;
+	int		n;
 
-	ft_printfnl("quick sort of list starting with %d of len %d", nbr(*a), length_a);
-	if (length_a == 2)
-	{
-		if (!stack_sorted(*a))
-			swap_a(a, b);
-		return ;
-	}
-	median = find_median(*a, length_a);  //length_a / 2 + 1-th element
 	i = 0;
-	while (i++ < length_a)
+	while (i++ < len_a)
 	{
-		if (nbr(ft_lsttail(*a)) < median)
-			push_b(a, b);
-		else
-			rotate_a(a, b);
-	}
-	i = 0;
-	while (i++ < length_a / 2 + length_a % 2)
-	{
-		lst = ft_lsttail(*a);
+		n = nbr(*a);
 		reverse_rotate_a(a, b);
-		if (nbr(lst) == median)
-			swap_a(a, b);
+		if (n <= median)
+			push_b(a, b);
+		if (n == median)
+			rotate_b(a, b);
 	}
-	big_a = *a;
-	push_a(a, b);
-	small_a = ft_lsttail(*a);
+	ft_printfnl("push smallers in a");
+	//sleep(3);
+	reverse_rotate_b(a, b);
 	while (*b)
 		push_a(a, b);
-	if (length_a == 3)
-		return ;
-	quick_sort(&small_a, b, length_a / 2);
+	ft_printfnl("rotate to original position");
+	//sleep(3);
 	i = 0;
-	while (i++ < length_a / 2 + 1)
+	while (i++ < len_a)
 		rotate_a(a, b);
-	quick_sort(&big_a, b, length_a / 2 + length_a % 2 - 1);
+}
+
+void			quick_sort_2(t_list **a, t_list **b)
+{
+	if (nbr(*a) > nbr((*a)->next))
+		return ;
+	reverse_rotate_a(a, b);
+	reverse_rotate_a(a, b);
+	swap_a(a, b);
+	rotate_a(a, b);
+	rotate_a(a, b);
+}
+
+void			quick_sort(t_list **a, t_list **b, size_t len_a)
+{
+	size_t		i;
+	int		median;
+	size_t		len_smallers;
+	size_t		len_biggers;
+
+	if (len_a < 2)
+		return ;
+	if (len_a == 2)
+		quick_sort_2(a, b);
+	median = find_median(*a, len_a);
+	ft_printfnl("partition, len_a %d, median: %d",len_a, median);
+	//sleep(3);
+	partition(a, b, len_a, median);
+	if (len_a == 3)
+		return ;
+	ft_printfnl("sort biggers");
+	//sleep(3);
+	len_biggers = len_a / 2;
+	quick_sort(a, b, len_biggers);
+	ft_printfnl("put smallers at bottom");
+	//sleep(3);
+	i = 0;
+	while (i++ < (len_biggers) + 1)
+		reverse_rotate_a(a, b);
+	ft_printfnl("sort smallers");
+	//sleep(3);
+	len_smallers = (len_a - 1) / 2;
+	quick_sort(a, b, len_smallers);
+	ft_printfnl("re-put smallers at top");
+	//sleep(3);
+	i = 0;
+	while (i++ < (len_biggers) + 1)
+		rotate_a(a, b);
 }

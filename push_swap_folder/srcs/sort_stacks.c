@@ -19,23 +19,17 @@ int			nbr(t_list *listptr)
 
 void			sort_stacks(t_list **a, t_list **b)
 {
-	size_t	i;
 	size_t	length_a;
 
 	if (check_stacks(*a, *b))
 		return ;
 	length_a = ft_lstlen(*a);
-	if (length_a == 2)
-		swap_a(a, NULL);
-	else if (length_a == 3)
-		three_sort(a);
-	else if (length_a <= 4)
-		simple_sort(a, b, length_a);
-	else
-	{
+//	if (length_a == 2)
+//		swap_a(a, NULL);
+//	else if (length_a == 3)
+//		three_sort(a);
+//	else if (length_a <= 4)
+//		simple_sort(a, b, length_a);
+//	else
 		quick_sort(a, b, length_a);
-		i = 0;
-		while (i++ < (length_a - 1) / 2)
-			rotate_a(a, b);
-	}
 }

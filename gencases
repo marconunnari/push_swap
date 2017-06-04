@@ -4,8 +4,8 @@ use Getopt::Std;
 use Algorithm::Permute;
 use Term::ANSIColor qw(:constants);
 
-my @array = 1..26;
-say join(' ', reverse @array);
+my @array = map { int(rand(2147483648)) } ( 1..100 );
+say join(" ", @array);
 exit(0);
 
 system "rm cases";
