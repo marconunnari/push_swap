@@ -33,4 +33,7 @@ void			reverse_rotate_a(t_list **a, t_list **b);
 void			reverse_rotate_b(t_list **a, t_list **b);
 void			reverse_rotate_both(t_list **a, t_list **b);
 int			nbr(t_list *listptr);
+void			three_sort(t_list **a);
+void			simple_sort(t_list **a, t_list **b, size_t length_a);
+void			quick_sort(t_list **a, t_list **b, size_t length_a);
 #endif

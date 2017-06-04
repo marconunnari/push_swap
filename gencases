@@ -4,6 +4,10 @@ use Getopt::Std;
 use Algorithm::Permute;
 use Term::ANSIColor qw(:constants);
 
+my @array = 1..24;
+say join(' ', reverse @array);
+exit(0);
+
 system "rm cases";
 $i = 2;
 while ($i <= 7)

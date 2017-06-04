@@ -8,7 +8,8 @@ DOBJS=objs
 DSRCS=srcs
 
 SRCS_FILES= main parse_args check_stacks sort_stacks print_stacks \
-		swap push rotate reverse_rotate #new#
+		swap push rotate reverse_rotate \
+		simple_sort #new#
 
 SRCS = $(addprefix $(DSRCS)/, $(addsuffix .c, $(SRCS_FILES)))
 OBJS = $(SRCS:$(DSRCS)/%.c=$(DOBJS)/%.o)
