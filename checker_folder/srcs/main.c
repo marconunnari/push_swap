@@ -84,6 +84,7 @@ int				main(int argc, char **argv)
 	i = perf_cmd(&a, &b, verbose);
 	if (verbose)
 		ft_printfnl("Performed %d operation%c", i, i == 1 ? '\0' : 's');
+	print_stacks(a, b);
 	if (check_stacks(a, b))
 		ft_printfnl("OK");
 	else

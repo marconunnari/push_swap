@@ -4,7 +4,7 @@ use Getopt::Std;
 use Algorithm::Permute;
 use Term::ANSIColor qw(:constants);
 
-my @array = map { int(rand(2147483648)) } ( 1..100 );
+my @array = map { int(rand(2147483648)) } ( 1..2000 );
 say join(" ", @array);
 exit(0);
 

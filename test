@@ -15,6 +15,7 @@ while(<>)
 	next if ($_ eq "");
 	say "./push_swap $_ | ./checker -v $_" if ($opt_e);
 	system "./push_swap $_ | ./checker -v $_" if ($opt_v);
+	system "./push_swap $_ | ./checker $_" if (not $opt_v);
 	$out = `./push_swap $_ | ./checker $_ | grep 'OK'`;
 	die "KO\n" if (not $out eq "OK\n");
 	$argnbr = split(/\s/);
