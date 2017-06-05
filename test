@@ -4,6 +4,8 @@ use Getopt::Std;
 use Algorithm::Permute;
 use Term::ANSIColor qw(:constants);
 
+system "make";
+
 $max = 2147483648;
 #@tests = (1, 2, 3, 4, 5, 8, 15, 23, 24, 25, 50, 100, 200, 1000, 2000);
 @tests = @ARGV;
