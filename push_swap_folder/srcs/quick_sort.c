@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/05 17:25:04 by mnunnari          #+#    #+#             */
+/*   Updated: 2017/06/05 18:56:34 by mnunnari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void		partition(t_list **a, t_list **b,
 		size_t len_a, int median)
 {
 	size_t		i;
-	int		n;
+	int			n;
 
 	i = 0;
 	while (i++ < len_a)
@@ -38,14 +50,14 @@ void			quick_sort_2(t_list **a, t_list **b)
 void			quick_sort(t_list **a, t_list **b, size_t len_a)
 {
 	size_t		i;
-	int		median;
+	int			median;
 	size_t		len_smallers;
 	size_t		len_biggers;
 
 	if (len_a < 2)
 		return ;
 	if (len_a == 2)
-		return quick_sort_2(a, b);
+		return (quick_sort_2(a, b));
 	median = find_median(*a, len_a);
 	partition(a, b, len_a, median);
 	if (len_a == 3)

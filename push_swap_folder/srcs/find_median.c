@@ -6,13 +6,13 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/04 18:24:04 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/04 19:48:23 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/05 18:55:38 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		get_smallers(t_list *lst, size_t length_a, int n)
+int				get_smallers(t_list *lst, size_t length_a, int n)
 {
 	int	smallers;
 
@@ -29,7 +29,7 @@ int		get_smallers(t_list *lst, size_t length_a, int n)
 
 int				find_median(t_list *a, size_t length_a)
 {
-	size_t		i;
+	size_t	i;
 	int		curr;
 	int		smallers;
 	int		target;

@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/04 19:23:58 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/04 19:24:01 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/05 19:08:10 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,14 @@ void			three_sort(t_list **a)
 	}
 }
 
-void			min_to_top(t_list **a, size_t length_a)
+int				get_i_min(t_list *lst)
 {
-	t_list		*lst;
 	size_t		i;
 	size_t		i_min;
-	size_t		diff;
-	int		min;
+	int			min;
 
 	i = 1;
 	i_min = 1;
-	lst = *a;
 	min = nbr(lst);
 	while (lst)
 	{
@@ -50,14 +47,23 @@ void			min_to_top(t_list **a, size_t length_a)
 		lst = lst->next;
 		i++;
 	}
+	return (i_min);
+}
+
+void			min_to_top(t_list **a, size_t length_a)
+{
+	t_list		*lst;
+	size_t		i;
+	size_t		i_min;
+
+	lst = *a;
+	i_min = get_i_min(lst);
 	i = 0;
-	diff = length_a - i_min;
-//	ft_printfnl("length_a %d, min %d, i_min %d, diff %d", length_a, min, i_min, diff);
 	if (i_min < length_a / 2)
-		while (i++ < length_a - diff)
+		while (i++ < i_min)
 			reverse_rotate_a(a, NULL);
 	else
-		while (i++ < diff)
+		while (i++ < length_a - i_min)
 			rotate_a(a, NULL);
 }
 

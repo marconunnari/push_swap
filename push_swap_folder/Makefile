@@ -7,7 +7,7 @@ INCLUDES= -I includes -I ../includes -I $(DLIBFT)/includes
 DOBJS=objs
 DSRCS=srcs
 
-SRCS_FILES= main parse_args check_stacks sort_stacks print_stacks \
+SRCS_FILES= main parse_args check_stacks sort_stacks print_stacks ps_error \
 		swap push rotate reverse_rotate \
 		simple_sort quick_sort find_median #new#
 

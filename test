@@ -4,24 +4,27 @@ use Getopt::Std;
 use Algorithm::Permute;
 use Term::ANSIColor qw(:constants);
 
-getopts('veor');
+$max = 2147483648;
+@tests = (1, 2, 3, 4, 5, 8, 15, 23, 24, 25, 50, 100, 200, 1000, 2000);
 
-system "make >/dev/null";
-
-$max = 0;
-while(<>)
+foreach $test (@tests)
 {
-	chomp ;
-	next if ($_ eq "");
-	say "./push_swap $_ | ./checker -v $_" if ($opt_e);
-	system "./push_swap $_ | ./checker -v $_" if ($opt_v);
-	system "./push_swap $_ | ./checker $_" if (not $opt_v);
-	$out = `./push_swap $_ | ./checker $_ | grep 'OK'`;
-	die "KO\n" if (not $out eq "OK\n");
-	$argnbr = split(/\s/);
-	$res = `./push_swap $_ | wc -l | bc`;
-	say "oprations: $res" if ($opt_o);
-	$max = $res if ($res > $max);
-	print GREEN "OK\n", RESET if ($opt_r);
+	my @array = map { int(rand($max)) } ( 1..$test );
+	$numbers = join(" ", @array);
+	say "$test args: $numbers";
+	system "./push_swap $numbers | ./checker $numbers";
+	system "./push_swap $numbers | wc -l";
 }
-print "max $max";
+
+#$i = 2;
+#while ($i <= 7)
+#{
+#	my @array = 1..$i;
+#	my $p_iterator = Algorithm::Permute->new ( \@array );
+#	while (my @perm = $p_iterator->next) {
+#		system "./push_swap @perm | ./checker @perm";
+#	}
+#	$i = $i + 1;
+#}
+
+

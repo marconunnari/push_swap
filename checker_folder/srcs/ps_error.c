@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stacks.c                                      :+:      :+:    :+:   */
+/*   ps_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/02 14:52:36 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/05 18:55:50 by mnunnari         ###   ########.fr       */
+/*   Created: 2017/06/05 16:54:50 by mnunnari          #+#    #+#             */
+/*   Updated: 2017/06/05 17:42:34 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int				nbr(t_list *listptr)
+void		free_ptr(void *ptr, size_t size)
 {
-	return (*((int*)listptr->content));
+	(void)size;
+	free(ptr);
 }
 
-void			sort_stacks(t_list **a, t_list **b)
+void		free_stacks(t_list **a, t_list **b)
 {
-	size_t	length_a;
+	ft_lstdel(a, free_ptr);
+	ft_lstdel(b, free_ptr);
+}
 
-	if (check_stacks(*a, *b))
-		return ;
-	length_a = ft_lstlen(*a);
-	if (length_a == 2)
-		swap_a(a, NULL);
-	else if (length_a == 3)
-		three_sort(a);
-	else if (length_a <= 24)
-		simple_sort(a, b, length_a);
-	else
-		quick_sort(a, b, length_a);
+void		ps_error(t_list **a, t_list **b)
+{
+	free_stacks(a, b);
+	ft_error("Error", 1);
 }

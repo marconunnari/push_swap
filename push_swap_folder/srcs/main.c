@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:50:08 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/02 15:27:58 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/05 17:23:47 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ int				main(int argc, char **argv)
 	a = parse_args(argc, argv, 1);
 	b = NULL;
 	sort_stacks(&a, &b);
+	free_stacks(&a, &b);
 }
