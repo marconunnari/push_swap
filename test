@@ -5,15 +5,17 @@ use Algorithm::Permute;
 use Term::ANSIColor qw(:constants);
 
 $max = 2147483648;
-@tests = (1, 2, 3, 4, 5, 8, 15, 23, 24, 25, 50, 100, 200, 1000, 2000);
+#@tests = (1, 2, 3, 4, 5, 8, 15, 23, 24, 25, 50, 100, 200, 1000, 2000);
+@tests = @ARGV;
 
 foreach $test (@tests)
 {
 	my @array = map { int(rand($max)) } ( 1..$test );
 	$numbers = join(" ", @array);
-	say "$test args: $numbers";
+	say "$test args:";
 	system "./push_swap $numbers | ./checker $numbers";
 	system "./push_swap $numbers | wc -l";
+	print "\n";
 }
 
 #$i = 2;
