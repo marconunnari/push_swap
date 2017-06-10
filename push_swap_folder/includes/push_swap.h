@@ -37,7 +37,8 @@ void			three_sort(t_list **a);
 void			simple_sort(t_list **a, t_list **b, size_t length_a);
 int				find_median(t_list *a, size_t length_a);
 void			min_to_top(t_list **a, size_t length_a);
-void			quick_sort(t_list **a, t_list **b, size_t length_a);
 void			ps_error(t_list **a, t_list **b);
 void			free_stacks(t_list **a, t_list **b);
+void			quick_sort_a(t_list **a, t_list **b,
+		size_t len, size_t prev_len);
 #endif

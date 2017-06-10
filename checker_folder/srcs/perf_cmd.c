@@ -58,7 +58,8 @@ int				perf_cmd(t_list **a, t_list **b, int verbose)
 		if (!op)
 		{
 			free(cmd);
-			ps_error(a, b);
+			continue;
+			//ps_error(a, b);
 		}
 		op(a, b);
 		if (verbose)

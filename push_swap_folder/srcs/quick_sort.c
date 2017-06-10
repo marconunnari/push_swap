@@ -12,64 +12,62 @@
 
 #include "push_swap.h"
 
-static void		partition(t_list **a, t_list **b,
-		size_t len_a, int median)
+static void		partition_b(t_list **a, t_list **b, size_t len)
 {
 	size_t		i;
+	int			median;
 	int			n;
 
+	median = find_median(*b, len);
 	i = 0;
-	while (i++ < len_a)
+	while (i++ < len)
+	{
+		n = nbr(*b);
+		reverse_rotate_b(a, b);
+		if (n > median)
+			push_a(a, b);
+	}
+}
+
+static void		partition_a(t_list **a, t_list **b, size_t len)
+{
+	size_t		i;
+	int			median;
+	int			n;
+
+	median = find_median(*a, len);
+	i = 0;
+	while (i++ < len)
 	{
 		n = nbr(*a);
 		reverse_rotate_a(a, b);
 		if (n <= median)
 			push_b(a, b);
-		if (n == median)
-			rotate_b(a, b);
 	}
-	reverse_rotate_b(a, b);
-	while (*b)
-		push_a(a, b);
-	i = 0;
-	while (i++ < len_a)
-		rotate_a(a, b);
 }
 
-void			quick_sort_2(t_list **a, t_list **b)
+void			quick_sort_b(t_list **a, t_list **b,
+		size_t len, size_t prev_len)
 {
-	if (nbr(*a) > nbr((*a)->next))
-		return ;
-	reverse_rotate_a(a, b);
-	reverse_rotate_a(a, b);
-	swap_a(a, b);
-	rotate_a(a, b);
-	rotate_a(a, b);
-}
-
-void			quick_sort(t_list **a, t_list **b, size_t len_a)
-{
-	size_t		i;
-	int			median;
-	size_t		len_smallers;
 	size_t		len_biggers;
 
-	if (len_a < 2)
-		return ;
-	if (len_a == 2)
-		return (quick_sort_2(a, b));
-	median = find_median(*a, len_a);
-	partition(a, b, len_a, median);
-	if (len_a == 3)
-		return ;
-	len_biggers = len_a / 2;
-	quick_sort(a, b, len_biggers);
-	i = 0;
-	while (i++ < (len_biggers) + 1)
-		reverse_rotate_a(a, b);
-	len_smallers = (len_a - 1) / 2;
-	quick_sort(a, b, len_smallers);
-	i = 0;
-	while (i++ < (len_biggers) + 1)
-		rotate_a(a, b);
+	ft_printfnl("quick sort B len %d", len);
+	partition_b(a, b, len);
+	len_biggers = prev_len / 2;
+	ft_printfnl("sort biggers");
+	quick_sort_a(a, b, len_biggers, len);
+	ft_printfnl("end quick sort B");
+}
+
+void			quick_sort_a(t_list **a, t_list **b,
+		size_t len, size_t prev_len)
+{
+	size_t		len_smallers;
+
+	ft_printfnl("quick sort A, len %d", len);
+	partition_a(a, b, len);
+	len_smallers = ((prev_len - 1) / 2) + 1;
+	ft_printfnl("sort smallers");
+	quick_sort_b(a, b, len_smallers, len);
+	ft_printfnl("end quick sort A");
 }
