@@ -12,34 +12,40 @@
 
 #include "push_swap.h"
 
-int				get_smallers(t_list *lst, size_t length_a, int n)
+int				get_smallers(t_list *lst, size_t len, int n)
 {
 	int	smallers;
 
 	smallers = 0;
-	while (lst && length_a > 0)
+	while (lst && len > 0)
 	{
 		if (nbr(lst) < n)
 			smallers++;
 		lst = lst->next;
-		length_a--;
+		len--;
 	}
 	return (smallers);
 }
 
-int				find_median(t_list *a, size_t length_a)
+int				find_median(t_list *lst, size_t len)
 {
 	size_t	i;
+	size_t	lstlen;
 	int		curr;
 	int		smallers;
 	int		target;
 
-	target = (length_a - 1) / 2;
+	lstlen = ft_lstlen(lst);
 	i = 0;
-	while (i < length_a)
+	if (lstlen > len)
 	{
-		curr = nbr(ft_lstat(a, i));
-		smallers = get_smallers(a, length_a, curr);
+		lst = ft_lstat(lst, lstlen - len);
+	}
+	target = len / 2;
+	while (i < len)
+	{
+		curr = nbr(ft_lstat(lst, i));
+		smallers = get_smallers(lst, len, curr);
 		if (smallers == target)
 			return (curr);
 		i++;

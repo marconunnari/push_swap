@@ -28,8 +28,8 @@ void			sort_stacks(t_list **a, t_list **b)
 		swap_a(a, NULL);
 	else if (length_a == 3)
 		three_sort(a);
-	else if (length_a <= 4)
+	else if (length_a <= 40)
 		simple_sort(a, b, length_a);
 	else
-		quick_sort_a(a, b, length_a, length_a);
+		quick_sort_a(a, b, length_a, 1);
 }

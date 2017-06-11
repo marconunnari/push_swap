@@ -17,6 +17,8 @@ int				main(int argc, char **argv)
 	t_list		*a;
 	t_list		*b;
 
+	if (argc == 1)
+		ft_error("usage: push_swap numbers", 1);
 	a = parse_args(argc, argv, 1);
 	b = NULL;
 	sort_stacks(&a, &b);

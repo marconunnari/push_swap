@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-make
-./push_swap $@ | ./checker -v $@
+clear
+if make >/dev/null
+then
+	./push_swap $@ | ./checker -v $@
+fi
