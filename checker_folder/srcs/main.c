@@ -20,7 +20,7 @@ int				main(int argc, char **argv)
 	int			verbose;
 
 	if (argc == 1)
-		ft_error("usage: push_swap numbers", 1);
+		exit(0);
 	verbose = 0;
 	a = parse_args(argc, argv, 1, &verbose);
 	b = NULL;
