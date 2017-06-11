@@ -6,13 +6,13 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 17:25:04 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/05 18:56:34 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/11 07:05:09 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list		*ft_lstpretail(t_list *lst)
+static t_list	*ft_lstpretail(t_list *lst)
 {
 	while (lst && lst->next && lst->next->next)
 		lst = lst->next;

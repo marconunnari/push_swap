@@ -6,7 +6,7 @@
 /*   By: mnunnari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 16:39:54 by mnunnari          #+#    #+#             */
-/*   Updated: 2017/06/05 17:18:22 by mnunnari         ###   ########.fr       */
+/*   Updated: 2017/06/11 07:04:40 by mnunnari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ int				perf_cmd(t_list **a, t_list **b, int verbose)
 		if (!op)
 		{
 			free(cmd);
-			continue;
-			//ps_error(a, b);
+			ps_error(a, b);
 		}
 		op(a, b);
 		if (verbose)
